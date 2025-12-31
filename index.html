@@ -5,52 +5,59 @@
     <title>2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: #0b1320;
-            color: white;
-        }
+   <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #0b1320;
+        color: white;
+    }
 
+    body {
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+
+    .center {
+        max-width: 900px;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .center img {
+        max-width: 200px;
+        width: 100%;
+        margin-bottom: 25px;
+        border-radius: 12px;
+    }
+
+    .center h1 {
+        font-size: clamp(1.4rem, 4.5vw, 2.3rem);
+        font-weight: 500;
+        line-height: 1.8;
+        word-break: normal;
+    }
+
+    /* ✅ DESKTOP ONLY: vertical center */
+    @media (min-width: 768px) {
         body {
-            display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            box-sizing: border-box;
         }
+    }
 
-        .center {
-            max-width: 900px;
-            z-index: 2;
-        }
-
-        .center img {
-            max-width: 200px;
-            width: 100%;
-            margin-bottom: 25px;
-            border-radius: 12px;
-        }
-
-        .center h1 {
-            font-size: clamp(1.4rem, 4.5vw, 2.3rem);
-            font-weight: 500;
-            line-height: 1.8;
-            word-break: keep-all;
-        }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-    </style>
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
+</style>
 </head>
 
 <body>
@@ -122,3 +129,4 @@
 
 </body>
 </html>
+
