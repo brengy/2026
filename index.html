@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <title>2026</title>
@@ -9,33 +9,38 @@
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
+            min-height: 100%;
             font-family: "Segoe UI", Tahoma, sans-serif;
             background: #0b1320;
-            overflow: hidden;
             color: white;
         }
 
-        .center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .center {
+            max-width: 900px;
             z-index: 2;
-            padding: 20px;
         }
 
         .center img {
             max-width: 200px;
-            margin-bottom: 20px;
+            width: 100%;
+            margin-bottom: 25px;
             border-radius: 12px;
         }
 
         .center h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.4rem, 4.5vw, 2.3rem);
             font-weight: 500;
-            line-height: 1.4;
+            line-height: 1.8;
+            word-break: keep-all;
         }
 
         canvas {
@@ -53,15 +58,12 @@
 <canvas id="confetti"></canvas>
 
 <div class="center">
-    <!-- CHANGE IMAGE HERE -->
     <img src="2026.jpg" alt="2026">
 
-    <!-- WRITE YOUR TEXT HERE -->
     <h1>
-        كل عام و أنتم المسلمين و الأقباط طيبين بمناسبة<br>
-			ميلاد السيد الميسح عيسى بن مريم , عبد الله و رسوله , 
-			عليه و على نبينا أفضل الصلاة و أتم التسليمات
-			
+        كل عام وأنتم المسلمون والأقباط بخير بمناسبة<br>
+        ميلاد السيد المسيح عيسى بن مريم، عبد الله ورسوله،<br>
+        عليه وعلى نبينا أفضل الصلاة وأتم التسليم
     </h1>
 </div>
 
@@ -69,8 +71,11 @@
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
 
     const confetti = [];
     const colors = ["#ffd166", "#ef476f", "#06d6a0", "#118ab2", "#ffffff"];
@@ -80,7 +85,7 @@
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             r: Math.random() * 6 + 4,
-            d: Math.random() * 5 + 2,
+            d: Math.random() * 4 + 2,
             color: colors[Math.floor(Math.random() * colors.length)]
         });
     }
@@ -112,11 +117,7 @@
     }
 
     animate();
-
-    window.onresize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
+    window.addEventListener("resize", resizeCanvas);
 </script>
 
 </body>
