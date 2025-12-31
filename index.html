@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: #0b1320;
+            overflow: hidden;
+            color: white;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .center img {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .center h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="center">
+    <!-- CHANGE IMAGE HERE -->
+    <img src="2026.jpg" alt="2026">
+
+    <!-- WRITE YOUR TEXT HERE -->
+    <h1>
+        كل عام و أنتم المسلمين و الأقباط طيبين بمناسبة<br>
+			ميلاد السيد الميسح عيسى بن مريم , عبد الله و رسوله , 
+			عليه و على نبينا أفضل الصلاة و أتم التسليمات
+			
+    </h1>
+</div>
+
+<script>
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confetti = [];
+    const colors = ["#ffd166", "#ef476f", "#06d6a0", "#118ab2", "#ffffff"];
+
+    for (let i = 0; i < 150; i++) {
+        confetti.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 6 + 4,
+            d: Math.random() * 5 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)]
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetti.forEach(p => {
+            ctx.beginPath();
+            ctx.fillStyle = p.color;
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        update();
+    }
+
+    function update() {
+        confetti.forEach(p => {
+            p.y += p.d;
+            if (p.y > canvas.height) {
+                p.y = -10;
+                p.x = Math.random() * canvas.width;
+            }
+        });
+    }
+
+    function animate() {
+        draw();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.onresize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+</script>
+
+</body>
+</html>
